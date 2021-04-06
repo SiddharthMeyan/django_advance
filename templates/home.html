@@ -1,5 +1,17 @@
 {% extends 'base.html' %}
-{% block title %}THis is title{% endblock title %}
+{% block title %}This is title{% endblock title %}
 
 
-{% block body %}This is body block{% endblock body %}
+{% block body %}
+
+    <h1 class='m-3 p-4'>This is Your homepage!....</h1> 
+    <br> <br>
+    <center>
+    {{ day }}-{{month}}-{{year}}. The number for this month is {{ month_number }}
+
+
+    </br>
+    <div class='m-4 p-4'>{{ cal|safe }}</div>
+    </center>
+
+{% endblock body %}
