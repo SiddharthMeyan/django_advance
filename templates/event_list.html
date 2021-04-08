@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}This is title{% endblock title %}
+
+
+{% block body %}
+
+<h1 class='m-2'>Events!....</h1>
+<br> <br>
+<center>
+    {% for event in listed_events %}
+<div class='container px-3'>
+    <div class="card text-center">
+        <div class="card-header">
+            {{ event.name }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">At: {{ event.venue }} </h5>
+            <p class="card-text">{{event.desc|slice:':168'}}....</p>
+            <p class="card-text">Our website: {{ event.venue.web_address }}</p>
+            
+        </div>
+        <div class="card-footer text-muted">
+            date:{{ event.event_date}}
+        </div>
+    </div>
+</div>
+
+
+    <br>
+    {% endfor %}
+    </ul>
+    {% endblock body %}
