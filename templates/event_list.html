@@ -6,15 +6,15 @@
 
 <h1 class='m-2'>Events!....</h1>
 <br> <br>
-<center>
+
     {% for event in listed_events %}
-<div class='container px-3'>
-    <div class="card text-center">
+<div class='container px-3 bg-dark'>
+    <div class="card text-center bg-info">
         <div class="card-header">
             {{ event.name }}
         </div>
         <div class="card-body">
-            <h5 class="card-title">At: {{ event.venue }} </h5>
+            <h5 class="card-title ">At: {{ event.venue }} </h5>
             <p class="card-text">{{event.desc|slice:':168'}}....</p>
             <p class="card-text">Our website: {{ event.venue.web_address }}</p>
             

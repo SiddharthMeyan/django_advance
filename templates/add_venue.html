@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}This is title{% endblock title %}
+
+
+{% block body %}
+
+<h1 class='m-3 p-4'>Add Venue!....</h1>
+<br> <br>
+
+<div class="container p-2">
+    <form action="add_venue" method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <center>
+            <button type='submit' class='m-4 btn btn-outline-danger'>Create Venue</button>
+        </center>
+    </form>
+</div>
+{% endblock body %}
