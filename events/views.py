@@ -1,10 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 import calendar
 from django.contrib import messages
 
 from calendar import HTMLCalendar
 from datetime import datetime
-from .models import Event
+from .models import Event, Venue
 from .form import VenueForm
 # from django.http import HttpResponseRedirect
 
@@ -41,8 +41,44 @@ def add_venue(request):
         if form.is_valid():
             venue_name=request.POST.get('name')
             form.save()
-            messages.success(request,"A new venue: %s, has been added!"%venue_name)
-            return redirect('add_venue')
+            messages.success(request," A new venue: %s, has been added!"%venue_name)
+            return redirect('add-venue')
 
     context={'form':form}
     return render(request,'add_venue.html',context)
+
+
+def venue_list(request):
+    list_venue = Venue.objects.all()
+    context={'list_venue':list_venue}
+    return render(request,'venue_list.html',context)
+
+
+def venue_detail(request, venue_id):
+    venue= Venue.objects.get(pk=venue_id)
+    context={
+        'venue':venue
+    }
+    return render(request,'venue_detail.html',context)
+
+def search_venue(request):
+    if request.method=='POST':
+        search_term=request.POST.get('search_ob')
+        search_res= Venue.objects.filter(name__icontains=search_term)
+    
+        if len(search_res) is 0:
+            messages.warning(request, " The Venue you are searching for isnt available")
+        else:
+            return render(request,'search_venue.html',{'search_res':search_res, 'search_term':search_term})
+    return render(request,'search_venue.html')
+
+
+
+def update_venue(request, venue_id): 
+    instance = get_object_or_404(Venue, id=venue_id)
+    form = VenueForm(request.POST or None, instance=instance)
+    if form.is_valid():
+        form.save()
+        messages.success(request, " Changes have been made")
+        return redirect('venue-list')
+    return render(request, 'update_venue.html', {'form': form})

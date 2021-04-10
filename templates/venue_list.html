@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}This is title{% endblock title %}
+
+
+{% block body %}
+
+<h1 class='m-3 p-4'>These are all of your Venues....</h1>
+<br>
+
+
+
+ {% for venue in list_venue %}
+<div class="container">
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title" href="{% url 'venue-detail' venue.id %}">{{ venue }} </h5>
+    <p class="card-text"> {{venue.address}} </p>
+    <a href="{% url 'update-venue' venue.id %}" class="btn btn-outline-secondary btn-sm">Update</a>
+  </div>
+</div>
+</div>
+{% endfor %}
+
+{% endblock body %}

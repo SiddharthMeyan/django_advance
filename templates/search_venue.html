@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}This is title{% endblock title %}
+
+
+{% block body %}
+{% if search_res %}
+    <h1 class='m-3 p-4'>Your search results for {{search_term}}....</h1> 
+    <br> <br>
+    <center>
+
+{% for search in search_res %}
+<a href="{% url 'venue-detail' search.id %}" >{{search}} </a><br><br>
+{% endfor %}
+{% else %}
+<div class='container'>
+<h1>Search not found. </h1>
+<br>
+<p> Add a new <a href=" {% url 'add-venue' %} ">Venue</a>.
+</p>
+</div>
+{% endif %}
+    </center>
+
+{% endblock body %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}This is title{% endblock title %}
+
+
+{% block body %}
+
+    <h1 class='m-3 p-4'>Single Venue....</h1> 
+    <br> <br>
+    <center>
+ 
+    {{venue}} <br>{{venue.address}} and the web is: <strong> {{venue.web_address}}</strong>
+    </center>
+
+{% endblock body %}
